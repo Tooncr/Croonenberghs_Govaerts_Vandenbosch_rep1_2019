@@ -4,6 +4,6 @@ import javax.print.DocFlavor;
 
 public interface CodeerStrategy {
 
-    String codeer(String);
-    S
+    String codeer(String zin);
+    String decodeer(String zin);
 }
