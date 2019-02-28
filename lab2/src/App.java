@@ -6,7 +6,6 @@ public class App {
 
         do {
             ui.algorithmDetermination();
-            ui.encodeOrDecode();
         } while (true);
     }
 }
