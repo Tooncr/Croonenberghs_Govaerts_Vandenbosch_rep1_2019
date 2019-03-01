@@ -6,6 +6,7 @@ public class App {
 
         do {
             ui.algorithmDetermination();
+            System.out.println("dit is een test");
         } while (true);
     }
 }
