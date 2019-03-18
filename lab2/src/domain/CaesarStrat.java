@@ -37,7 +37,7 @@ public class CaesarStrat implements CodeerStrategy {
         for (int i = 0; i < 26; i++) {
             if (Character.toLowerCase(input) == alfabet[i]) {
                 int geconverteerd = i - 3;
-                if (geconverteerd <= 0) {
+                if (geconverteerd < 0) {
                     int ge2 = 3-i;
                     geconverteerd = 26-ge2;
                 }
@@ -56,7 +56,7 @@ public class CaesarStrat implements CodeerStrategy {
     public String codeer(String zin){
         String output = "";
 
-        for(int i = 0; i<= zin.length();i++){
+        for(int i = 0; i< zin.length();i++){
             char geconverteerd = roteerKarakter(zin.charAt(i));
             output += geconverteerd;
         }
@@ -67,7 +67,7 @@ public class CaesarStrat implements CodeerStrategy {
     public String decodeer(String zin){
         String output = "";
 
-        for(int i=0; i<=zin.length();i++){
+        for(int i=0; i<zin.length();i++){
             char geconverteerd = roteerKarakterTerug(zin.charAt(i));
             output+= geconverteerd;
         }
