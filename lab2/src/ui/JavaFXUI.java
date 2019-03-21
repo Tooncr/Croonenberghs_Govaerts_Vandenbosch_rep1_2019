@@ -1,6 +1,8 @@
 package ui;
 
+import domain.CaesarStrat;
 import domain.CodeerStrategy;
+import domain.GespiegeldStrat;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -39,7 +41,6 @@ public class JavaFXUI extends Application{
         });
         */
         TextField sentence = new TextField();
-        Label zin = new Label("zin : ");
         VBox root = new VBox();
         root.setAlignment(Pos.BASELINE_CENTER);
         sentence.setPadding(new Insets(20,100,20,100));
@@ -50,10 +51,40 @@ public class JavaFXUI extends Application{
         root.getChildren().add(spiegel);
         root.getChildren().add(encode);
         root.getChildren().add(decode);
-        zin.setPadding(new Insets(20,30,20,30));
-        root.getChildren().add(zin);
         Scene mainScene = new Scene(root, 700, 500);
         stage.setScene(mainScene);
         stage.show();
+
+
+        encode.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                CodeerStrategy strat = null;
+                boolean cs = caesar.isSelected();
+                boolean sp = spiegel.isSelected();
+                if(cs){
+                    strat = new CaesarStrat();
+                } else if(sp){
+                    strat = new GespiegeldStrat();
+                }
+                root.getChildren().add(new Label(strat.codeer(sentence.getText())));
+            }
+        });
+        decode.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                CodeerStrategy strat = null;
+                boolean cs = caesar.isSelected();
+                boolean sp = spiegel.isSelected();
+                if(cs){
+                    strat = new CaesarStrat();
+                } else if(sp){
+                    strat = new GespiegeldStrat();
+                }
+                root.getChildren().add(new Label(strat.decodeer(sentence.getText())));
+            }
+        });
     }
 }
+
+
