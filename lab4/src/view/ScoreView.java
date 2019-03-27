@@ -1,11 +1,12 @@
 package view;
 
+import domain.View;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class ScoreView {
+public class ScoreView implements View {
 	private Stage stage = new Stage();
 	private Scene scoreScene;
 	private Label scoreLabel; 
@@ -32,5 +33,9 @@ public class ScoreView {
 	private void voegScoreLijnToe(String scoreLijn){
 		scoreLabel.setText(scoreLabel.getText()+"\n"+scoreLijn);
 	}
-	
+
+	@Override
+	public void update() {
+		
+	}
 }
