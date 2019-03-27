@@ -1,5 +1,7 @@
 package view;
 
+import domain.Speler;
+import domain.View;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -8,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class PlayerView  {
+public class PlayerView implements View {
 	private Stage stage = new Stage();
 	private Scene playerScene;
 	private Label diceLabel; 
@@ -16,6 +18,8 @@ public class PlayerView  {
 	private Label messageLabel; 
 	
 	private int spelerNummer;
+
+	private Speler speler;
 	
 	public PlayerView(int spelerNummer){
 		this.spelerNummer = spelerNummer;
@@ -44,7 +48,12 @@ public class PlayerView  {
 	public void isAanBeurt(boolean aanBeurt){
 		playButton.setDisable(!aanBeurt);		
 	}
-	
+
+	@Override
+	public void update() {
+
+	}
+
 	class ThrowDicesHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
