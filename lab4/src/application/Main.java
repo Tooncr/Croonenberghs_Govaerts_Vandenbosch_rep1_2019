@@ -6,6 +6,7 @@ import view.PlayerView;
 import view.ScoreView;
 
 public class Main extends Application {
+
 	@Override
 	public void start(Stage primaryStage) {
 		new ScoreView();
