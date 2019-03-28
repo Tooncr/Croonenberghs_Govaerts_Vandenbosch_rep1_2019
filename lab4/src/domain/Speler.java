@@ -27,7 +27,7 @@ public class Speler {
         return res;
     }
 
-    public void throwDice(){
+    public int[] throwDice(){
         int[] dice = generateRandomDice(6,2);
         int res = dice[0] + dice[1];
         if(dice[0] == dice[1]) res *= 2;
@@ -36,6 +36,7 @@ public class Speler {
         }
         this.prevScore = res;
         this.score += res;
+        return dice;
     }
 
     //add view to list
