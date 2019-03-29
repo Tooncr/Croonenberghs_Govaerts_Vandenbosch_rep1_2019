@@ -58,8 +58,8 @@ public class PlayerView implements View {
 	class ThrowDicesHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-        	int[] gooien = speler.throwDice();
-			messageLabel.setText("beurt " + ": " + gooien[0] + " en " + gooien[1] + " - score: " +Integer.toString(speler.getPrevScore()));
+        	//int[] gooien = speler.throwDice();
+			//messageLabel.setText("beurt " + ": " + gooien[0] + " en " + gooien[1] + " - score: " +Integer.toString(speler.getPrevScore()));
 
         }
     }
