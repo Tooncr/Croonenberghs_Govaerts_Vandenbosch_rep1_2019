@@ -10,7 +10,7 @@ public class Spel {
     private Set<Speler> spelers;
     private List<View> views;
 
-    public Spel(int beurt){
+    public Spel(){
         setBeurt(0);
         spelers = new HashSet<>();
     }
@@ -37,6 +37,10 @@ public class Spel {
         return dice;
     }
 
+    public String printThrow(Speler s){
+        int[] gooien = throwDice(s);
+    }
+
     //add view to list
     public void addView(View view){
         this.views.add(view);
@@ -49,7 +53,18 @@ public class Spel {
 
     //update all views in list
     public void updateDisplays(){
-        
+        for(View v : views){
+            v.update();
+        }
+    }
+
+    public Speler getSpeler(int nr){
+        for(Speler s : spelers){
+            if(s.getVolgnr() == nr){
+                return s;
+            }
+        }
+        return null;
     }
 
     public int getBeurt() {

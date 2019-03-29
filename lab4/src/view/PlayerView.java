@@ -1,5 +1,6 @@
 package view;
 
+import domain.Spel;
 import domain.Speler;
 import domain.View;
 import javafx.event.ActionEvent;
@@ -19,11 +20,9 @@ public class PlayerView implements View {
 	
 	private int spelerNummer;
 
-	private Speler speler;
-	
+
 	public PlayerView(int spelerNummer){
 		this.spelerNummer = spelerNummer;
-		this.speler = new Speler(spelerNummer);
 		diceLabel = new Label("beurt 1: ");
 		playButton = new Button("Werp dobbelstenen");
 		messageLabel = new Label("Spel nog niet gestart");
@@ -52,13 +51,14 @@ public class PlayerView implements View {
 
 	@Override
 	public void update() {
-
+		messageLabel.setText("dinge");
 	}
 
 	class ThrowDicesHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-        	//int[] gooien = speler.throwDice();
+        	update();
+        	//int[] gooien = spel.throwDice();
 			//messageLabel.setText("beurt " + ": " + gooien[0] + " en " + gooien[1] + " - score: " +Integer.toString(speler.getPrevScore()));
 
         }
