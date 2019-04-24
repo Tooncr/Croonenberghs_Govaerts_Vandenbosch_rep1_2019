@@ -1,5 +1,6 @@
 package application;
 	
+import domain.Spel;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import view.PlayerView;
@@ -14,6 +15,10 @@ public class Main extends Application {
 		PlayerView pv2 = new PlayerView(2);
 		PlayerView pv1 = new PlayerView(1);		
 		pv1.isAanBeurt(true);
+		Spel spel = new Spel();
+		spel.addView(pv1);
+		spel.addView(pv2);
+		spel.addView(pv3);
 	}
 	
 	public static void main(String[] args) {
