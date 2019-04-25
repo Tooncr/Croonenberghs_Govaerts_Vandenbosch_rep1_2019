@@ -16,13 +16,14 @@ public class PlayerView implements View {
 	private Scene playerScene;
 	private Label diceLabel; 
 	private Button playButton; 
-	private Label messageLabel; 
+	private Label messageLabel;
 	
-	private int spelerNummer;
+	private Speler speler;
+	private Spel spel;
 
-
-	public PlayerView(int spelerNummer){
-		this.spelerNummer = spelerNummer;
+	public PlayerView(Spel spel, Speler speler){
+		this.spel = spel;
+		this.speler = speler;
 		diceLabel = new Label("beurt 1: ");
 		playButton = new Button("Werp dobbelstenen");
 		messageLabel = new Label("Spel nog niet gestart");
@@ -30,16 +31,16 @@ public class PlayerView implements View {
 		playButton.setDisable(true);
 		layoutComponents();
 		stage.setScene(playerScene);
-		stage.setTitle("Speler "+spelerNummer);
+		stage.setTitle("Speler "+ speler.getVolgnr());
 		stage.setResizable(false);		
-		stage.setX(100+(spelerNummer-1) * 350);
+		stage.setX(100+(speler.getVolgnr()-1) * 350);
 		stage.setY(200);
 		stage.show();
 	}
 
 	private void layoutComponents() {
 		VBox root = new VBox(10);
-		playerScene = new Scene(root,250,100);
+		playerScene = new Scene(root,400,100);
 		root.getChildren().add(playButton);
 		root.getChildren().add(diceLabel);
 		root.getChildren().add(messageLabel);			
@@ -51,16 +52,14 @@ public class PlayerView implements View {
 
 	@Override
 	public void update() {
-		messageLabel.setText("dinge");
+		diceLabel.setText("beurt " + spel.getRonde() + ":");
+		messageLabel.setText("speler " + spel.getSpeler().getVolgnr() + " werpt " + spel.getSpeler().printDice() + " - score " + spel.getSpeler().getPrevScore());
 	}
 
 	class ThrowDicesHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-        	update();
-        	//int[] gooien = spel.throwDice();
-			//messageLabel.setText("beurt " + ": " + gooien[0] + " en " + gooien[1] + " - score: " +Integer.toString(speler.getPrevScore()));
-
+			spel.gooi(spel.getSpeler());
         }
     }
 }

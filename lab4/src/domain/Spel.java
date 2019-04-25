@@ -1,44 +1,29 @@
 package domain;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
-public class Spel {
+public class Spel implements ObservableVanMichiel {
     private int beurt;
-    private Set<Speler> spelers;
+    private int ronde;
+    private List<Speler> spelers;
     private List<View> views;
 
     public Spel(){
-        setBeurt(0);
-        spelers = new HashSet<>();
+        setRonde(1);
+        setBeurt(1);
+        spelers = new ArrayList<>();
+        this.views = new ArrayList<>();
     }
 
-
-    public int[] generateRandomDice(int sides, int amount){
-        int[] res = new int[amount];
-        Random rand = new Random();
-        for (int i = 0; i < amount; i++) {
-            res[i] = rand.nextInt(sides)+1;
+    public void gooi(Speler speler){
+        speler.throwDice();
+        if(beurt >= spelers.size()){
+            beurt = 1;
+            ronde++;
+        } else {
+            beurt += 1;
         }
-        return res;
-    }
-
-    public int[] throwDice(Speler s){
-        int[] dice = generateRandomDice(6,2);
-        int res = dice[0] + dice[1];
-        if(dice[0] == dice[1]) res *= 2;
-        if(res == s.getPrevScore()){
-            res += 5;
-        }
-        s.setPrevScore(res);
-        s.addscore(res);
-        return dice;
-    }
-
-    public String printThrow(Speler s){
-        int[] gooien = throwDice(s);
+        updateViews();
     }
 
     //add view to list
@@ -52,7 +37,7 @@ public class Spel {
     }
 
     //update all views in list
-    public void updateDisplays(){
+    public void updateViews(){
         for(View v : views){
             v.update();
         }
@@ -73,5 +58,29 @@ public class Spel {
 
     public void setBeurt(int beurt) {
         this.beurt = beurt;
+    }
+
+    public void addSpeler(Speler speler){
+        this.spelers.add(speler);
+    }
+
+    public Speler getSpeler(){
+        return getSpeler(this.beurt);
+    }
+
+    public int getRonde(){
+        return this.ronde;
+    }
+
+    private void setRonde(int ronde){
+        this.ronde = ronde;
+    }
+
+    public String getScoreLijn() {
+        String res = "Beurt " + this.ronde + ":";
+        for (int i = 1; i < spelers.size()+1; i++) {
+            res += "sp" + i + ": " + getSpeler(i).getPrevScore() + " ";
+        }
+        return res;
     }
 }
