@@ -1,5 +1,7 @@
 package view;
 
+import domain.Spel;
+import domain.Speler;
 import domain.View;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -9,9 +11,11 @@ import javafx.stage.Stage;
 public class ScoreView implements View {
 	private Stage stage = new Stage();
 	private Scene scoreScene;
-	private Label scoreLabel; 
+	private Label scoreLabel;
+	private Spel spel;
 		
-	public ScoreView(){
+	public ScoreView(Spel spel){
+		this.spel = spel;
 		scoreLabel = new Label();
 		scoreLabel.setStyle("-fx-font-family: \"Courier new\"; -fx-font-size: 12; -fx-text-fill: darkred;");
 
@@ -36,6 +40,8 @@ public class ScoreView implements View {
 
 	@Override
 	public void update() {
-		
+		if(spel.getBeurt() == 1 && spel.getRonde() != 1) {
+			voegScoreLijnToe(spel.getScoreLijn());
+		}
 	}
 }
